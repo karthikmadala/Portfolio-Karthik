@@ -58,10 +58,28 @@
                     <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item">
+                        <button class="btn-premium btn-primary-premium magnetic ms-3" id="shareBtn" type="button" title="Share Portfolio">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <script>
+    document.getElementById("shareBtn").onclick = function() {
+        if (navigator.share) {
+            navigator.share({
+                title: document.title,
+                url: window.location.href
+            });
+        } else {
+            navigator.clipboard.writeText(window.location.href);
+            alert('Link copied to clipboard!');
+        }
+    };
+    </script>
 
     <!-- Hero Section -->
     <section class="hero-section" id="home">
@@ -84,10 +102,10 @@
                     web solutions that push the boundaries of what's possible.
                 </p>
                 <div class="social-links">
-                    <a href="https://github.com/yourusername" class="social-link magnetic" aria-label="GitHub">
+                    <a href="https://github.com/karthikmadala" class="social-link magnetic" aria-label="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://linkedin.com/in/karthik-madala-30a1a4242" class="social-link magnetic"
+                    <a href="https://linkedin.com/in/karthikmadala?trk=people-guest_people_search-card" class="social-link magnetic"
                         aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
@@ -640,10 +658,10 @@
                             <div class="text-center">
                                 <h4 class="h4 mb-4 gradient-text">Connect Across Platforms</h4>
                                 <div class="d-flex justify-content-center gap-3 mb-4">
-                                    <a href="https://github.com/yourusername" class="social-link magnetic">
+                                    <a href="https://github.com/karthikmadala" class="social-link magnetic">
                                         <i class="fab fa-github"></i>
                                     </a>
-                                    <a href="https://linkedin.com/in/karthik-madala-30a1a4242"
+                                    <a href="https://linkedin.com/in/karthikmadala?trk=people-guest_people_search-card"
                                         class="social-link magnetic">
                                         <i class="fab fa-linkedin-in"></i>
                                     </a>
