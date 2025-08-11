@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karthik Madala - Software Engineer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/js/all.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- Page Loader -->
+    <!-- <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-logo">MK</div>
+            <div class="loader-text">Loading Portfolio...</div>
+        </div>
+    </div> -->
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Mouse Follower -->
+    <div class="mouse-follower" id="mouseFollower"></div>
+
+    <!-- Advanced Background -->
+    <div class="/advanced-background"></div>
+
+    <!-- Floating Geometric Elements -->
+    <div class="floating-element floating-triangle" style="top: 15%; left: 10%; animation-delay: 0s;"></div>
+    <div class="floating-element floating-square" style="top: 25%; right: 15%; animation-delay: 3s;"></div>
+    <div class="floating-element floating-triangle" style="bottom: 20%; left: 20%; animation-delay: 6s;"></div>
+    <div class="floating-element floating-square" style="bottom: 15%; right: 10%; animation-delay: 9s;"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#home"><img src="images/logo.png" alt="logo"
+                    style="width: 100%; height: 30px;"></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars text-light"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- <li class="nav-item"><a class="nav-link" href="#home">Home</a></li> -->
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-particles" id="heroParticles"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="profile-container">
+                    <div class="profile-image" style="width:auto; height:200px;">
+                        <img src="images/profile.png" alt="Karthik Madala"
+                            onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIwIiBoZWlnaHQ9IjIyMCIgdmlld0JveD0iMCAwIDIyMCAyMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjExMCIgY3k9IjExMCIgcj0iMTEwIiBmaWxsPSJ1cmwoI2dyYWRpZW50KSIvPgo8Y2lyY2xlIGN4PSIxMTAiIGN5PSI5MCIgcj0iMzUiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik03MCAyMDBDNzAgMTcwIDg3IDE0NSAxMTAgMTQ1UzE1MCAxNzAgMTUwIDIwMFYyMjBINzBWMjAwWiIgZmlsbD0id2hpdGUiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZGOEMyQyIvPgo8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNFODU5MEMiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K'">
+                    </div>
+                </div>
+                <p class="hero-greeting">Hello, I'm</p>
+                <h1 class="hero-name gradient-text">Karthik Madala</h1>
+                <h2 class="hero-title">Software Engineer</h2>
+                <p class="hero-subtitle">Chennai, Tamil Nadu • Blockchain & Web Development Specialist</p>
+                <p class="hero-description">
+                    Results-driven Software Engineer specializing in Laravel, blockchain technologies, and payment
+                    gateway integrations. Passionate about building decentralized applications and delivering innovative
+                    web solutions that push the boundaries of what's possible.
+                </p>
+                <div class="social-links">
+                    <a href="https://github.com/yourusername" class="social-link magnetic" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/karthik-madala-30a1a4242" class="social-link magnetic"
+                        aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:karthikmadala30@gmail.com" class="social-link magnetic" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="tel:+918978451715" class="social-link magnetic" aria-label="Phone">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+                <div class="hero-buttons d-flex gap-4 justify-content-center flex-wrap">
+                    <a href="#contact" class="btn-premium btn-primary-premium magnetic">
+                        <i class="fas fa-rocket"></i>
+                        Let's Collaborate
+                    </a>
+                    <a href="#projects" class="btn-premium btn-secondary-premium magnetic">
+                        <i class="fas fa-code"></i>
+                        Explore Work
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="5">0</div>
+                        <div class="stat-label">Live Projects</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="1">0</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="4">0</div>
+                        <div class="stat-label">Certifications</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="100">0</div>
+                        <div class="stat-label">% Dedication</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="fade-in">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">
+                    A passionate developer with expertise in cutting-edge technologies, dedicated to creating innovative
+                    solutions that make a difference in the digital world.
+                </p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="glass-card tilt-effect">
+                        <div class="row align-items-center">
+                            <div class="col-lg-8">
+                                <p class="lead mb-4">
+                                    Results-driven Computer Science graduate with a strong foundation in Laravel, SQL,
+                                    and blockchain technologies. Proficient in developing decentralized applications
+                                    (DApps) and integrating blockchain networks with web applications using Onramp
+                                    payment gateways.
+                                </p>
+                                <p class="mb-4">
+                                    My journey in software engineering has been marked by continuous learning and
+                                    innovation. I specialize in creating seamless bridges between traditional web
+                                    technologies and cutting-edge blockchain solutions, always focusing on user
+                                    experience and performance optimization.
+                                </p>
+                                <div class="d-flex gap-3">
+                                    <a href="#experience" class="btn-premium btn-primary-premium">
+                                        <i class="fas fa-briefcase"></i>
+                                        View Experience
+                                    </a>
+                                    <a href="#skills" class="btn-premium btn-secondary-premium">
+                                        <i class="fas fa-tools"></i>
+                                        My Skills
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <div class="lottie-container" style="width: 100%; height: 300px;">
+                                    <lottie-player
+                                        src="https://lottie.host/8cf4ba71-e5fb-44f3-8134-178c4d389417/0CCsdcgNIP.json"
+                                        background="transparent" speed="1" loop autoplay></lottie-player>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <div class="container">
+            <div class="fade-in">
+                <h2 class="section-title">Technical Expertise</h2>
+                <p class="section-subtitle">
+                    Comprehensive mastery across modern web development, blockchain technologies, and system
+                    architecture
+                </p>
+            </div>
+            <div class="skills-grid stagger-animation">
+                <div class="skill-category tilt-effect">
+                    <div class="skill-category-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Languages & Frameworks</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Laravel Framework</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">Python</span>
+                    </div>
+                </div>
+                <div class="skill-category tilt-effect">
+                    <div class="skill-category-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <h3>APIs & Integrations</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">RESTful APIs</span>
+                        <span class="skill-tag">Web3 Integration</span>
+                        <span class="skill-tag">Stripe</span>
+                        <span class="skill-tag">MoonPay</span>
+                        <span class="skill-tag">Transak</span>
+                        <span class="skill-tag">Payment Gateways</span>
+                    </div>
+                </div>
+                <div class="skill-category tilt-effect">
+                    <div class="skill-category-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h3>Blockchain & Web3</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MetaMask</span>
+                        <span class="skill-tag">Sui Wallet</span>
+                        <span class="skill-tag">EVM Networks</span>
+                        <span class="skill-tag">Non-EVM</span>
+                        <span class="skill-tag">ICO Development</span>
+                        <span class="skill-tag">DApps</span>
+                        <span class="skill-tag">Smart Contracts</span>
+                    </div>
+                </div>
+                <div class="skill-category tilt-effect">
+                    <div class="skill-category-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Databases & Storage</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Database Optimization</span>
+                        <span class="skill-tag">Query Performance</span>
+                    </div>
+                </div>
+                <div class="skill-category tilt-effect">
+                    <div class="skill-category-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>Cloud & Infrastructure</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Apache2</span>
+                        <span class="skill-tag">Ubuntu</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Server Management</span>
+                    </div>
+                </div>
+                <div class="skill-category tilt-effect">
+                    <div class="skill-category-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-wordpress"></i>
+                        </div>
+                        <h3>WordPress & CMS</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Theme Development</span>
+                        <span class="skill-tag">Plugin Integration</span>
+                        <span class="skill-tag">Performance Optimization</span>
+                        <span class="skill-tag">Security Implementation</span>
+                        <span class="skill-tag">Custom Solutions</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+        <div class="container">
+            <div class="fade-in">
+                <h2 class="section-title">Professional Journey</h2>
+                <p class="section-subtitle">
+                    Building innovative blockchain solutions and enterprise-grade web applications
+                </p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content tilt-effect">
+                        <h3 class="timeline-title">Software Engineer Intern</h3>
+                        <p class="timeline-company">App Stars Applications Private Limited</p>
+                        <p class="timeline-date">November 2024 - Present • Chennai, Tamil Nadu</p>
+                        <div class="mb-4">
+                            <h4 class="h5 text-primary mb-3">Core Responsibilities</h4>
+                            <ul class="list-unstyled">
+                                <li class="mb-3 d-flex align-items-start">
+                                    <i class="fas fa-rocket text-success me-3 mt-1"></i>
+                                    <span>Architected and deployed 5 production-ready blockchain DApps with MetaMask and
+                                        Sui wallet integrations, supporting both EVM and non-EVM ecosystems</span>
+                                </li>
+                                <li class="mb-3 d-flex align-items-start">
+                                    <i class="fas fa-link text-success me-3 mt-1"></i>
+                                    <span>Engineered secure RESTful API integrations for seamless blockchain network
+                                        communication with advanced error handling</span>
+                                </li>
+                                <li class="mb-3 d-flex align-items-start">
+                                    <i class="fas fa-cloud text-success me-3 mt-1"></i>
+                                    <span>Orchestrated AWS infrastructure deployment (Ubuntu, MySQL, Apache2) ensuring
+                                        99.9% uptime and optimal performance</span>
+                                </li>
+                                <li class="mb-3 d-flex align-items-start">
+                                    <i class="fas fa-users text-success me-3 mt-1"></i>
+                                    <span>Collaborated in Agile development teams, consistently delivering high-quality
+                                        solutions ahead of schedule</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="project-showcase">
+                            <div class="project-sub-card">
+                                <div class="sub-card-title">ICO Platforms <a href="https://ico.zapme.co" class="btn-premium btn-primary-premium live-demo">
+                                    <i class="fas fa-play"></i>
+                                    Live Demo
+                                </a></div>
+                                
+                                <div class="sub-card-desc">Laravel-based secure token sale platform</div>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="section" id="achievements">
+        <div class="container">
+            <div class="fade-in">
+                <h2 class="section-title">Key Achievements</h2>
+                <p class="section-subtitle">
+                    Demonstrating technical excellence and innovative problem-solving capabilities
+                </p>
+            </div>
+            <div class="achievement-grid stagger-animation">
+                <div class="achievement-card tilt-effect">
+                    <div class="achievement-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="achievement-number">5</div>
+                    <h3 class="achievement-title">Live Blockchain DApps</h3>
+                    <p class="achievement-description">Successfully deployed and maintained five production blockchain
+                        applications with advanced wallet integrations and payment gateway support</p>
+                </div>
+                <div class="achievement-card tilt-effect">
+                    <div class="achievement-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="achievement-number">AI</div>
+                    <h3 class="achievement-title">Bot Integration</h3>
+                    <p class="achievement-description">Developed intelligent Telegram bot with Python and AI assistance
+                        for real-time transaction monitoring and user notifications</p>
+                </div>
+                <div class="achievement-card tilt-effect">
+                    <div class="achievement-icon">
+                        <i class="fas fa-bridge"></i>
+                    </div>
+                    <div class="achievement-number">2</div>
+                    <h3 class="achievement-title">Chain Bridge Systems</h3>
+                    <p class="achievement-description">Architected Node.js solutions bridging EVM and non-EVM networks
+                        with automated fund transfer capabilities</p>
+                </div>
+                <div class="achievement-card tilt-effect">
+                    <div class="achievement-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="achievement-number">99%</div>
+                    <h3 class="achievement-title">Performance Optimization</h3>
+                    <p class="achievement-description">Achieved 99%+ uptime through database optimization and efficient
+                        MySQL/PostgreSQL query performance tuning</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <div class="fade-in">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">
+                    Innovative solutions spanning AI, blockchain, and web development technologies
+                </p>
+            </div>
+            <div class="projects-grid stagger-animation">
+                <div class="project-card tilt-effect">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-smile"></i>
+                        </div>
+                        <h3 class="project-title">Emotion-Based Emoji Display</h3>
+                    </div>
+                    <p class="project-description">
+                        Revolutionary real-time facial expression detection system that intelligently displays
+                        corresponding emojis using advanced computer vision algorithms and machine learning models for
+                        seamless human-computer interaction.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Computer Vision</span>
+                        <span class="tech-tag">Real-time Processing</span>
+                    </div>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="btn-premium btn-secondary-premium">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                        <!-- <a href="#" class="btn-premium btn-primary-premium">
+                            <i class="fas fa-play"></i>
+                            Live Demo
+                        </a> -->
+                    </div>
+                </div>
+                <div class="project-card tilt-effect">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="project-title">SocialConnect - A Next-Gen Social Networking Platform</h3>
+                    </div>
+                    <p class="project-description">
+                        SocialConnect is a feature-rich social networking platform built with Ruby on Rails. It allows users to connect, interact, and share content seamlessly. The platform includes essential social media functionalities such as user authentication, friendships, post creation, likes, comments, and real-time notifications.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">Ruby On Rails</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Bootstrap</span>
+                    </div>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="btn-premium btn-secondary-premium">
+                            <i class="fab fa-github"></i>
+                            SOURCE CODE
+                        </a>
+                        <!-- <a href="#" class="btn-premium btn-primary-premium">
+                            <i class="fas fa-external-link-alt"></i>
+                            View Project
+                        </a> -->
+                    </div>
+                </div>
+                <div class="project-card tilt-effect">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h3 class="project-title">Enterprise ICO Platforms</h3>
+                    </div>
+                    <p class="project-description">
+                        Comprehensive suite of blockchain ICO platforms featuring integrated payment gateways,
+                        multi-wallet support, advanced admin panels, and enterprise-grade security for seamless token
+                        sales management.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Laravel</span>
+                        <span class="tech-tag">Web3.js</span>
+                        <span class="tech-tag">MetaMask</span>
+                        <span class="tech-tag">Smart Contracts</span>
+                        <span class="tech-tag">Payment APIs</span>
+                        <span class="tech-tag">AWS</span>
+                    </div>
+                    <div class="d-flex gap-3">
+                        <!-- <a href="#" class="btn-premium btn-secondary-premium">
+                            <i class="fas fa-info-circle"></i>
+                            Case Studies
+                        </a> -->
+                        <a href="https://ico.zapme.co" class="btn-premium btn-primary-premium">
+                            <i class="fas fa-globe"></i>
+                            Live Platforms
+                        </a>
+                    </div>
+                </div>
+                <!-- <div class="project-card tilt tilt-effect">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h3 class="project-title">Cross-Chain Infrastructure</h3>
+                    </div>
+                    <p class="project-description">
+                        Cutting-edge blockchain interoperability solution enabling seamless asset transfers between EVM and non-EVM networks with automated transaction monitoring and fail-safe mechanisms.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Blockchain APIs</span>
+                        <span class="tech-tag">Smart Contracts</span>
+                        <span class="tech-tag">Web3</span>
+                        <span class="tech-tag">Automation</span>
+                    </div>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="btn-premium btn-secondary-premium">
+                            <i class="fas fa-code"></i>
+                            Architecture
+                        </a>
+                        <a href="#" class="btn-premium btn-primary-premium">
+                            <i class="fas fa-play-circle"></i>
+                            Demo
+                        </a>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <!-- Certifications Section -->
+    <section class="section" id="certifications">
+        <div class="container">
+            <div class="fade-in">
+                <h2 class="section-title">Professional Certifications</h2>
+                <p class="section-subtitle">
+                    Continuous learning and skill validation from industry leaders
+                </p>
+            </div>
+            <div class="certification-grid stagger-animation">
+                <div class="certification-card tilt-effect">
+                    <div class="cert-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h4 class="h5 mb-2">Database & SQL</h4>
+                    <p class="text-light mb-2">Infosys</p>
+                    <div class="skill-tags mt-3">
+                        <span class="skill-tag">SQL Optimization</span>
+                        <span class="skill-tag">Database Design</span>
+                    </div>
+                </div>
+                <div class="certification-card tilt-effect">
+                    <div class="cert-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <h4 class="h5 mb-2">HTML5 Advanced</h4>
+                    <p class="text-light mb-2">Infosys</p>
+                    <div class="skill-tags mt-3">
+                        <span class="skill-tag">Semantic HTML</span>
+                        <span class="skill-tag">Web Standards</span>
+                    </div>
+                </div>
+                <div class="certification-card tilt-effect">
+                    <div class="cert-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h4 class="h5 mb-2">Data Structures & Algorithms</h4>
+                    <p class="text-light mb-2">Infosys</p>
+                    <div class="skill-tags mt-3">
+                        <span class="skill-tag">Algorithm Design</span>
+                        <span class="skill-tag">Problem Solving</span>
+                    </div>
+                </div>
+                <div class="certification-card tilt-effect">
+                    <div class="cert-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4 class="h5 mb-2">Excel Analytics Simulation</h4>
+                    <p class="text-light mb-2">JPMorgan Chase & Co.</p>
+                    <div class="skill-tags mt-3">
+                        <span class="skill-tag">Data Analysis</span>
+                        <span class="skill-tag">Financial Modeling</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="fade-in">
+                <h2 class="section-title">Let's Build Something Amazing</h2>
+                <p class="section-subtitle">
+                    Ready to bring your vision to life? Let's collaborate and create innovative solutions together.
+                </p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info tilt-effect">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="contact-item magnetic">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="h5 mb-1 text-primary">Location</h4>
+                                    <p class="text-light mb-0">Chennai, Tamil Nadu 600035, India</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item magnetic">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="h5 mb-1 text-primary">Email</h4>
+                                    <p class="text-light mb-0">karthikmadala30@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-center">
+                                <h4 class="h4 mb-4 gradient-text">Connect Across Platforms</h4>
+                                <div class="d-flex justify-content-center gap-3 mb-4">
+                                    <a href="https://github.com/yourusername" class="social-link magnetic">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://linkedin.com/in/karthik-madala-30a1a4242"
+                                        class="social-link magnetic">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="mailto:karthikmadala30@gmail.com" class="social-link magnetic">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                </div>
+                                <div class="d-flex flex-column gap-3">
+                                    <a href="mailto:karthikmadala30@gmail.com"
+                                        class="btn-premium btn-primary-premium magnetic">
+                                        <i class="fas fa-paper-plane"></i>
+                                        Send Message
+                                    </a>
+                                    
+                                </div>
+                                <div class="mt-4 p-3 rounded"
+                                    style="background: rgba(255, 140, 66, 0.1); border: 1px solid rgba(255, 140, 66, 0.2);">
+                                    <p class="small text-light mb-2">Available for:</p>
+                                    <div class="d-flex flex-wrap justify-content-center gap-2">
+                                        <span class="badge bg-primary">Freelance Projects</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 text-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-md-start">
+                    <p class="mb-0 text-light">© 2025 Karthik Madala. Crafted with <i
+                            class="fas fa-heart text-danger"></i> and innovation.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
