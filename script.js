@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         element.addEventListener('mousemove', (e) => {
             const rect = element.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect-height / 2;
+            const centerY = rect.top + rect.height / 2;
             const moveX = (e.clientX - centerX) / 20;
             const moveY = (e.clientY - centerY) / 20;
             element.style.transform = `perspective(1000px) rotateX(${moveY}deg) rotateY(${moveX}deg)`;
@@ -159,4 +159,124 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Initialize AOS
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 50,
+        });
+    }
+
+    // Initialize Popper.js for Skills
+    const skillTags = document.querySelectorAll('.skill-tag');
+    const tooltip = document.getElementById('tooltip');
+    const tooltipContent = document.getElementById('tooltip-content');
+    
+    let popperInstance = null;
+
+    skillTags.forEach(tag => {
+        tag.addEventListener('mouseenter', () => {
+            const proficiency = tag.getAttribute('data-proficiency');
+            if (proficiency && tooltip && tooltipContent) {
+                tooltipContent.textContent = proficiency;
+                tooltip.setAttribute('data-show', '');
+                popperInstance = Popper.createPopper(tag, tooltip, {
+                    placement: 'top',
+                    modifiers: [
+                        { name: 'offset', options: { offset: [0, 8] } },
+                        { name: 'preventOverflow', options: { padding: 8 } },
+                        { name: 'flip', options: { padding: 8 } }
+                    ],
+                });
+            }
+        });
+
+        tag.addEventListener('mouseleave', () => {
+            if (tooltip) {
+                tooltip.removeAttribute('data-show');
+            }
+            if (popperInstance) {
+                popperInstance.destroy();
+                popperInstance = null;
+            }
+        });
+    });
+
+    // SweetAlert for Project Details
+    const projectBtns = document.querySelectorAll('.project-details-btn');
+    projectBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const title = btn.getAttribute('data-title') || 'Project';
+            const desc = btn.getAttribute('data-desc') || 'Details coming soon.';
+            
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    title: title,
+                    text: desc,
+                    icon: 'info',
+                    background: 'rgba(20, 20, 20, 0.7)',
+                    customClass: {
+                        popup: 'antigravity-swal'
+                    },
+                    confirmButtonText: 'Awesome',
+                    confirmButtonColor: '#FF8C42'
+                });
+            }
+        });
+    });
+
+    // SweetAlert for Contact Message
+    const sendMsgBtn = document.querySelector('a[href^="mailto:"]');
+    if (sendMsgBtn) {
+        sendMsgBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    title: 'Send a Message',
+                    html: `
+                        <input id="swal-input1" class="swal2-input" placeholder="Your Name" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,140,66,0.5);">
+                        <textarea id="swal-input2" class="swal2-textarea" placeholder="Your Message" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,140,66,0.5);"></textarea>
+                    `,
+                    focusConfirm: false,
+                    background: 'rgba(20, 20, 20, 0.7)',
+                    customClass: {
+                        popup: 'antigravity-swal'
+                    },
+                    confirmButtonText: '<i class="fas fa-paper-plane"></i> Send',
+                    confirmButtonColor: '#FF8C42',
+                    showCancelButton: true,
+                    cancelButtonColor: '#333',
+                    preConfirm: () => {
+                        const name = document.getElementById('swal-input1').value;
+                        const msg = document.getElementById('swal-input2').value;
+                        if (!name || !msg) {
+                            Swal.showValidationMessage('Please enter both name and message');
+                        }
+                        return { name: name, msg: msg };
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Message Sent!',
+                            text: 'Thanks for reaching out, ' + result.value.name + '. I will get back to you soon.',
+                            icon: 'success',
+                            background: 'rgba(20, 20, 20, 0.7)',
+                            customClass: {
+                                popup: 'antigravity-swal'
+                            },
+                            confirmButtonText: 'Awesome',
+                            confirmButtonColor: '#FF8C42'
+                        });
+                    }
+                });
+            } else {
+                // fallback
+                window.location.href = sendMsgBtn.getAttribute('href');
+            }
+        });
+    }
 });

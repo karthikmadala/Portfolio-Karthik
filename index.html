@@ -10,11 +10,15 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-        <link rel="icon" type="image/png" href="images/logo.png">
+        <link rel="icon" type="image/png" href="assets/images/logo.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/js/all.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -44,7 +48,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
-            <a class="navbar-brand" href="#home"><img src="images/logo.png" alt="logo"
+            <a class="navbar-brand" href="#home"><img src="assets/images/logo.png" alt="logo"
                     style="width: 100%; height: 30px;"></a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <i class="fas fa-bars text-light"></i>
@@ -88,7 +92,7 @@
             <div class="hero-content">
                 <div class="profile-container">
                     <div class="profile-image" style="width:auto; height:200px;">
-                        <img src="images/profile.png" alt="Karthik Madala"
+                        <img src="assets/images/profile.png" alt="Karthik Madala"
                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIwIiBoZWlnaHQ9IjIyMCIgdmlld0JveD0iMCAwIDIyMCAyMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjExMCIgY3k9IjExMCIgcj0iMTEwIiBmaWxsPSJ1cmwoI2dyYWRpZW50KSIvPgo8Y2lyY2xlIGN4PSIxMTAiIGN5PSI5MCIgcj0iMzUiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik03MCAyMDBDNzAgMTcwIDg3IDE0NSAxMTAgMTQ1UzE1MCAxNzAgMTUwIDIwMFYyMjBINzBWMjAwWiIgZmlsbD0id2hpdGUiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZGOEMyQyIvPgo8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNFODU5MEMiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K'">
                     </div>
                 </div>
@@ -124,6 +128,10 @@
                     <a href="#projects" class="btn-premium btn-secondary-premium magnetic">
                         <i class="fas fa-code"></i>
                         Explore Work
+                    </a>
+                    <a href="Resume.pdf" download="Karthik_Madala_Resume.pdf" class="btn-premium btn-primary-premium magnetic">
+                        <i class="fas fa-download"></i>
+                        Download Resume
                     </a>
                 </div>
             </div>
@@ -189,7 +197,7 @@
                                     technologies and cutting-edge blockchain solutions, always focusing on user
                                     experience and performance optimization.
                                 </p>
-                                <div class="d-flex gap-3">
+                                <div class="d-flex gap-3 flex-wrap">
                                     <a href="#experience" class="btn-premium btn-primary-premium">
                                         <i class="fas fa-briefcase"></i>
                                         View Experience
@@ -197,6 +205,10 @@
                                     <a href="#skills" class="btn-premium btn-secondary-premium">
                                         <i class="fas fa-tools"></i>
                                         My Skills
+                                    </a>
+                                    <a href="Resume.pdf" download="Karthik_Madala_Resume.pdf" class="btn-premium btn-primary-premium">
+                                        <i class="fas fa-download"></i>
+                                        Download Resume
                                     </a>
                                 </div>
                             </div>
@@ -233,13 +245,14 @@
                         <h3>Languages & Frameworks</h3>
                     </div>
                     <div class="skill-tags">
-                        <span class="skill-tag">Laravel Framework</span>
-                        <span class="skill-tag">PHP</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag" data-proficiency="Expert (90%)">Laravel Framework</span>
+                        <span class="skill-tag" data-proficiency="Advanced (85%)">PHP</span>
+                        <span class="skill-tag" data-proficiency="Advanced (85%)">JavaScript</span>
+                        <span class="skill-tag" data-proficiency="Intermediate (70%)">Angular</span>
+                        <span class="skill-tag" data-proficiency="Intermediate (75%)">Node.js</span>
+                        <span class="skill-tag" data-proficiency="Expert (95%)">HTML5</span>
+                        <span class="skill-tag" data-proficiency="Expert (90%)">CSS3</span>
+                        <span class="skill-tag" data-proficiency="Advanced (80%)">Python</span>
                     </div>
                 </div>
                 <div class="skill-category tilt-effect">
@@ -250,12 +263,12 @@
                         <h3>APIs & Integrations</h3>
                     </div>
                     <div class="skill-tags">
-                        <span class="skill-tag">RESTful APIs</span>
-                        <span class="skill-tag">Web3 Integration</span>
-                        <span class="skill-tag">Stripe</span>
-                        <span class="skill-tag">MoonPay</span>
-                        <span class="skill-tag">Transak</span>
-                        <span class="skill-tag">Payment Gateways</span>
+                        <span class="skill-tag" data-proficiency="Expert (90%)">RESTful APIs</span>
+                        <span class="skill-tag" data-proficiency="Advanced (85%)">Web3 Integration</span>
+                        <span class="skill-tag" data-proficiency="Advanced (85%)">Stripe</span>
+                        <span class="skill-tag" data-proficiency="Advanced (80%)">MoonPay</span>
+                        <span class="skill-tag" data-proficiency="Advanced (80%)">Transak</span>
+                        <span class="skill-tag" data-proficiency="Expert (95%)">Payment Gateways</span>
                     </div>
                 </div>
                 <div class="skill-category tilt-effect">
@@ -266,13 +279,13 @@
                         <h3>Blockchain & Web3</h3>
                     </div>
                     <div class="skill-tags">
-                        <span class="skill-tag">MetaMask</span>
-                        <span class="skill-tag">Sui Wallet</span>
-                        <span class="skill-tag">EVM Networks</span>
-                        <span class="skill-tag">Non-EVM</span>
-                        <span class="skill-tag">ICO Development</span>
-                        <span class="skill-tag">DApps</span>
-                        <span class="skill-tag">Smart Contracts</span>
+                        <span class="skill-tag" data-proficiency="Expert (95%)">MetaMask</span>
+                        <span class="skill-tag" data-proficiency="Advanced (85%)">Sui Wallet</span>
+                        <span class="skill-tag" data-proficiency="Expert (90%)">EVM Networks</span>
+                        <span class="skill-tag" data-proficiency="Advanced (80%)">Non-EVM</span>
+                        <span class="skill-tag" data-proficiency="Expert (90%)">ICO Development</span>
+                        <span class="skill-tag" data-proficiency="Advanced (85%)">DApps</span>
+                        <span class="skill-tag" data-proficiency="Advanced (80%)">Smart Contracts</span>
                     </div>
                 </div>
                 <div class="skill-category tilt-effect">
@@ -283,10 +296,10 @@
                         <h3>Databases & Storage</h3>
                     </div>
                     <div class="skill-tags">
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">Database Optimization</span>
-                        <span class="skill-tag">Query Performance</span>
+                        <span class="skill-tag" data-proficiency="Expert (90%)">MySQL</span>
+                        <span class="skill-tag" data-proficiency="Advanced (85%)">PostgreSQL</span>
+                        <span class="skill-tag" data-proficiency="Expert (95%)">Database Optimization</span>
+                        <span class="skill-tag" data-proficiency="Advanced (85%)">Query Performance</span>
                     </div>
                 </div>
                 <div class="skill-category tilt-effect">
@@ -297,11 +310,11 @@
                         <h3>Cloud & Infrastructure</h3>
                     </div>
                     <div class="skill-tags">
-                        <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">Apache2</span>
-                        <span class="skill-tag">Ubuntu</span>
-                        <span class="skill-tag">Linux</span>
-                        <span class="skill-tag">Server Management</span>
+                        <span class="skill-tag" data-proficiency="Advanced (80%)">AWS</span>
+                        <span class="skill-tag" data-proficiency="Expert (90%)">Apache2</span>
+                        <span class="skill-tag" data-proficiency="Advanced (85%)">Ubuntu</span>
+                        <span class="skill-tag" data-proficiency="Intermediate (75%)">Linux</span>
+                        <span class="skill-tag" data-proficiency="Advanced (85%)">Server Management</span>
                     </div>
                 </div>
                 <div class="skill-category tilt-effect">
@@ -312,11 +325,11 @@
                         <h3>WordPress & CMS</h3>
                     </div>
                     <div class="skill-tags">
-                        <span class="skill-tag">Theme Development</span>
-                        <span class="skill-tag">Plugin Integration</span>
-                        <span class="skill-tag">Performance Optimization</span>
-                        <span class="skill-tag">Security Implementation</span>
-                        <span class="skill-tag">Custom Solutions</span>
+                        <span class="skill-tag" data-proficiency="Expert (90%)">Theme Development</span>
+                        <span class="skill-tag" data-proficiency="Advanced (85%)">Plugin Integration</span>
+                        <span class="skill-tag" data-proficiency="Expert (95%)">Performance Optimization</span>
+                        <span class="skill-tag" data-proficiency="Advanced (85%)">Security Implementation</span>
+                        <span class="skill-tag" data-proficiency="Advanced (80%)">Custom Solutions</span>
                     </div>
                 </div>
             </div>
@@ -441,7 +454,7 @@
                 </p>
             </div>
             <div class="projects-grid stagger-animation">
-                <div class="project-card tilt-effect">
+                <div class="project-card tilt-effect" data-aos="fade-up">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-smile"></i>
@@ -460,18 +473,14 @@
                         <span class="tech-tag">Computer Vision</span>
                         <span class="tech-tag">Real-time Processing</span>
                     </div>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="btn-premium btn-secondary-premium">
-                            <i class="fab fa-github"></i>
-                            Source Code
-                        </a>
-                        <!-- <a href="#" class="btn-premium btn-primary-premium">
-                            <i class="fas fa-play"></i>
-                            Live Demo
-                        </a> -->
+                    <div class="d-flex gap-3 mt-3">
+                        <button class="btn-premium btn-secondary-premium project-details-btn" data-title="Emotion-Based Emoji Display" data-desc="Revolutionary real-time facial expression detection system that intelligently displays corresponding emojis using advanced computer vision algorithms and machine learning models for seamless human-computer interaction. Built primarily using Python and OpenCV.">
+                            <i class="fas fa-info-circle"></i>
+                            Project Details
+                        </button>
                     </div>
                 </div>
-                <div class="project-card tilt-effect">
+                <div class="project-card tilt-effect" data-aos="zoom-out-up" data-aos-delay="100">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-brain"></i>
@@ -488,18 +497,14 @@
                         <span class="tech-tag">JavaScript</span>
                         <span class="tech-tag">Bootstrap</span>
                     </div>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="btn-premium btn-secondary-premium">
-                            <i class="fab fa-github"></i>
-                            SOURCE CODE
-                        </a>
-                        <!-- <a href="#" class="btn-premium btn-primary-premium">
-                            <i class="fas fa-external-link-alt"></i>
-                            View Project
-                        </a> -->
+                    <div class="d-flex gap-3 mt-3">
+                        <button class="btn-premium btn-secondary-premium project-details-btn" data-title="SocialConnect Platform" data-desc="A feature-rich social networking platform built with Ruby on Rails. Includes essential social media functionalities such as user authentication, friendships, post creation, likes, comments, and real-time notifications. Designed with Bootstrap for mobile-first responsiveness.">
+                            <i class="fas fa-info-circle"></i>
+                            Project Details
+                        </button>
                     </div>
                 </div>
-                <div class="project-card tilt-effect">
+                <div class="project-card tilt-effect" data-aos="fade-up" data-aos-delay="200">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-coins"></i>
@@ -519,15 +524,15 @@
                         <span class="tech-tag">Payment APIs</span>
                         <span class="tech-tag">AWS</span>
                     </div>
-                    <div class="d-flex gap-3">
-                        <!-- <a href="#" class="btn-premium btn-secondary-premium">
-                            <i class="fas fa-info-circle"></i>
-                            Case Studies
-                        </a> -->
+                    <div class="d-flex gap-3 mt-3">
                         <a href="https://ico.zapme.co" class="btn-premium btn-primary-premium">
                             <i class="fas fa-globe"></i>
                             Live Platforms
                         </a>
+                        <button class="btn-premium btn-secondary-premium project-details-btn" data-title="Enterprise ICO Platforms" data-desc="Comprehensive suite of blockchain ICO platforms. Integrates MetaMask and Sui wallet, along with advanced admin panels and payment gateways like MoonPay, Transak, and Stripe for seamless token sales management.">
+                            <i class="fas fa-info-circle"></i>
+                            Project Details
+                        </button>
                     </div>
                 </div>
                 <!-- <div class="project-card tilt tilt-effect">
@@ -675,7 +680,10 @@
                                         <i class="fas fa-paper-plane"></i>
                                         Send Message
                                     </a>
-                                    
+                                    <a href="Resume.pdf" download="Karthik_Madala_Resume.pdf" class="btn-premium btn-secondary-premium magnetic">
+                                        <i class="fas fa-download"></i>
+                                        Download Resume
+                                    </a>
                                 </div>
                                 <div class="mt-4 p-3 rounded"
                                     style="background: rgba(255, 140, 66, 0.1); border: 1px solid rgba(255, 140, 66, 0.2);">
@@ -697,7 +705,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-md-start">
-                    <p class="mb-0 text-light">© 2025 Karthik Madala. Crafted with <i
+                    <p class="mb-0 text-light">© 2026 Karthik Madala. Crafted with <i
                             class="fas fa-heart text-danger"></i> and innovation.</p>
                 </div>
             </div>
@@ -708,6 +716,12 @@
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
+
+    <!-- Popper Tooltip -->
+    <div id="tooltip" role="tooltip" class="custom-tooltip">
+        <span id="tooltip-content"></span>
+        <div id="arrow" data-popper-arrow></div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
