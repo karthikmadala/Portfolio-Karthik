@@ -1,0 +1,490 @@
+﻿<!doctype html>
+<html lang="en" data-theme="dark" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Optimizing MySQL Queries in Laravel: Lessons from Production | Karthik
+      Madala
+    </title>
+    <meta
+      name="description"
+      content="Real-world MySQL optimization techniques for Laravel apps - N+1 resolution, proper indexing, Redis caching, and Eloquent performance pitfalls from a production engineer."
+    />
+    <meta name="author" content="Karthik Madala" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://karthikmadala.github.io/Portfolio-Karthik/article-3.html" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://karthikmadala.github.io/Portfolio-Karthik/article-3.html"
+    />
+    <meta
+      property="og:title"
+      content="Optimizing MySQL Queries in Laravel: Lessons from Production"
+    />
+    <meta
+      property="og:description"
+      content="Real-world MySQL optimization techniques for Laravel applications covering N+1, indexing, caching, and Eloquent performance pitfalls."
+    />
+    <meta
+      property="og:image"
+      content="https://karthikmadala.github.io/Portfolio-Karthik/assets/images/profile.png"
+    />
+    <meta property="og:site_name" content="Karthik Madala Portfolio" />
+    <meta property="article:author" content="Karthik Madala" />
+    <meta property="article:published_time" content="2026-02-14" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#FF8C42" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://karthikmadala.github.io/Portfolio-Karthik/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://karthikmadala.github.io/Portfolio-Karthik/blog.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Optimizing MySQL Queries in Laravel",
+            "item": "https://karthikmadala.github.io/Portfolio-Karthik/article-3.html"
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Optimizing MySQL Queries in Laravel: Lessons from Production",
+        "description": "Real-world MySQL optimization for Laravel - N+1, indexing, Redis caching, and Eloquent pitfalls from production experience.",
+        "author": {
+          "@type": "Person",
+          "name": "Karthik Madala",
+          "url": "https://karthikmadala.github.io/Portfolio-Karthik"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Karthik Madala Portfolio",
+          "url": "https://karthikmadala.github.io/Portfolio-Karthik"
+        },
+        "datePublished": "2026-02-14",
+        "dateModified": "2026-02-14",
+        "url": "https://karthikmadala.github.io/Portfolio-Karthik/article-3.html",
+        "image": "https://karthikmadala.github.io/Portfolio-Karthik/assets/images/profile.png",
+        "keywords": [
+          "MySQL",
+          "Laravel",
+          "Performance",
+          "Eloquent",
+          "Database Optimization",
+          "Redis",
+          "Indexing"
+        ],
+        "inLanguage": "en-IN"
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/images/logo.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/images/logo.png"
+    />
+    <link rel="manifest" href="manifest.json" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap&font-display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <link rel="stylesheet" href="assets/css/index.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+    <script src="assets/js/script.js" defer></script>
+  </head>
+  <body data-page="article">
+    <div class="page-loader" id="pageLoader" aria-hidden="true">
+      <div class="loader-content">
+        <div class="loader-ring">
+          <div class="loader-ring-inner"></div>
+          <div class="loader-logo">
+            <img src="assets/images/logo.png" alt="Logo" />
+          </div>
+        </div>
+        <div class="loader-bar-wrap">
+          <div class="loader-bar" id="loaderBar"></div>
+        </div>
+        <p class="loader-text">Loading<span class="loader-dots">...</span></p>
+      </div>
+    </div>
+
+    <div
+      class="scroll-progress"
+      id="scrollProgress"
+      role="progressbar"
+      aria-valuenow="0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    ></div>
+    <div class="mouse-follower" id="mouseFollower" aria-hidden="true">
+      <div class="mouse-follower-dot"></div>
+    </div>
+    <canvas class="bg-canvas" id="bgCanvas" aria-hidden="true"></canvas>
+
+
+    <!-- NAVIGATION -->
+  <div id="nav-placeholder"></div>
+
+  <main>
+      <div class="article-hero">
+        <div class="container">
+          <nav aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.html"
+                  ><i class="fas fa-house" aria-hidden="true"></i> Home</a
+                >
+              </li>
+              <li class="breadcrumb-item"><a href="blog.html">Blog</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                MySQL Optimization
+              </li>
+            </ol>
+          </nav>
+          <span class="article-category">Laravel / MySQL</span>
+          <h1 class="article-title">
+            Optimizing MySQL Queries in Laravel: Lessons from Production
+          </h1>
+          <div class="article-meta">
+            <span class="article-meta-item"
+              ><i class="fas fa-user" aria-hidden="true"></i> Karthik
+              Madala</span
+            >
+            <span class="article-meta-item"
+              ><i class="fas fa-calendar" aria-hidden="true"></i> February 14,
+              2026</span
+            >
+            <span class="article-meta-item"
+              ><i class="fas fa-clock" aria-hidden="true"></i> 9 min read</span
+            >
+            <span class="article-meta-item"
+              ><i class="fas fa-tag" aria-hidden="true"></i> MySQL, Laravel,
+              Performance</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="article-body">
+        <div class="container">
+          <div class="article-content">
+            <div class="article-toc">
+              <h4>Table of Contents</h4>
+              <ol>
+                <li>
+                  <a href="#n-plus-1">Eliminating the N+1 Query Problem</a>
+                </li>
+                <li>
+                  <a href="#indexing">Strategic Indexing for Laravel Apps</a>
+                </li>
+                <li><a href="#select">Reducing Memory with select()</a></li>
+                <li><a href="#chunking">Chunking Large Datasets</a></li>
+                <li><a href="#caching">Query Caching with Redis</a></li>
+                <li><a href="#explain">Reading EXPLAIN Output</a></li>
+                <li><a href="#tools">Profiling Tools</a></li>
+              </ol>
+            </div>
+
+            <h2 id="n-plus-1">Eliminating the N+1 Query Problem</h2>
+            <p>
+              The N+1 problem is the single most common performance killer in
+              Laravel applications. It occurs when you load a collection and
+              then lazily load a relationship for each item, firing one query
+              per record instead of one joined query.
+            </p>
+
+            <h3>The Problem</h3>
+            <pre><code>// BAD - fires 1 + N queries
+$users = User::all(); // 1 query: SELECT * FROM users
+foreach ($users as $user) {
+    echo $user->wallet->balance; // N queries: SELECT * FROM wallets WHERE user_id = ?
+}</code></pre>
+
+            <h3>The Fix: Eager Loading</h3>
+            <pre><code>// GOOD - fires exactly 2 queries
+$users = User::with('wallet')->get();
+foreach ($users as $user) {
+    echo $user->wallet->balance; // no extra queries
+}
+
+// BETTER - load only what you need
+$users = User::with(['wallet:id,user_id,balance'])->get();</code></pre>
+
+            <p>For conditional eager loading:</p>
+            <pre><code>$users = User::when($request->has('with_transactions'), function ($query) {
+    $query->with(['transactions' => function ($q) {
+        $q->latest()->limit(10);
+    }]);
+})->paginate(20);</code></pre>
+
+            <h2 id="indexing">Strategic Indexing for Laravel Apps</h2>
+            <p>
+              Indexes are the most impactful optimization lever. The rule of
+              thumb: index any column that appears in a <code>WHERE</code>,
+              <code>ORDER BY</code>, or <code>JOIN ON</code> clause of a
+              frequently-run query.
+            </p>
+            <pre><code>// Migration: composite index for common query pattern
+Schema::table('transactions', function (Blueprint $table) {
+    // Index for: WHERE user_id = ? AND status = ? ORDER BY created_at DESC
+    $table->index(['user_id', 'status', 'created_at'], 'idx_user_status_created');
+
+    // Full-text index for search
+    $table->fullText(['description', 'notes']);
+});</code></pre>
+
+            <p>Indexes you should always have in a blockchain application:</p>
+            <ul>
+              <li>
+                <code>transactions.tx_hash</code> - unique, used in every TX
+                lookup
+              </li>
+              <li>
+                <code>transactions.wallet_address</code> - for wallet history
+                queries
+              </li>
+              <li>
+                <code>transactions.status</code> + <code>created_at</code> - for
+                pending TX polling
+              </li>
+              <li>
+                <code>users.email</code> - unique, used in every auth query
+              </li>
+            </ul>
+
+            <h2 id="select">Reducing Memory with select()</h2>
+            <p>
+              Fetching <code>SELECT *</code> is wasteful when you only need two
+              columns. The <code>select()</code> clause saves both memory and
+              network transfer:
+            </p>
+            <pre><code>// Wasteful - transfers all 30 columns per row
+$transactions = Transaction::where('status', 'pending')->get();
+
+// Efficient - transfers only what the view needs
+$transactions = Transaction::select(['id', 'user_id', 'amount', 'tx_hash', 'created_at'])
+    ->where('status', 'pending')
+    ->latest()
+    ->get();
+
+// Even better for huge tables - use cursor() for memory efficiency
+Transaction::where('status', 'pending')
+    ->select(['id', 'tx_hash'])
+    ->cursor()
+    ->each(function ($tx) {
+        ProcessTransaction::dispatch($tx);
+    });</code></pre>
+
+            <h2 id="chunking">Chunking Large Datasets</h2>
+            <p>
+              When processing thousands of rows, never call <code>get()</code> -
+              it loads everything into memory at once. Use
+              <code>chunk()</code> or <code>chunkById()</code>:
+            </p>
+            <pre><code>// BAD - loads 50,000 rows into PHP memory simultaneously
+$transactions = Transaction::where('status', 'unprocessed')->get();
+
+// GOOD - processes 500 at a time
+Transaction::where('status', 'unprocessed')
+    ->chunkById(500, function ($transactions) {
+        foreach ($transactions as $tx) {
+            // process each transaction
+        }
+    });
+
+// BEST for ordered data - chunkById is safer than chunk
+// chunk() can miss/duplicate rows if records are updated during iteration</code></pre>
+
+            <h2 id="caching">Query Caching with Redis</h2>
+            <p>
+              Some queries are expensive and their results don't change
+              frequently. Cache them:
+            </p>
+            <pre><code>// Cache ICO settings - they change rarely
+$icoSettings = Cache::remember('ico:settings', now()->addHours(1), function () {
+    return IcoSetting::first();
+});
+
+// Cache per-user token balance
+$balance = Cache::remember("user:{$userId}:token_balance", 300, function () use ($userId) {
+    return TokenAllocation::where('user_id', $userId)->sum('tokens');
+});
+
+// Invalidate cache after update
+public function updateAllocation(User $user, float $tokens): void
+{
+    DB::transaction(function () use ($user, $tokens) {
+        TokenAllocation::updateOrCreate(
+            ['user_id' => $user->id],
+            ['tokens' => DB::raw("tokens + {$tokens}")]
+        );
+        Cache::forget("user:{$user->id}:token_balance");
+    });
+}</code></pre>
+
+            <h2 id="explain">Reading EXPLAIN Output</h2>
+            <p>
+              When a query is still slow despite your efforts,
+              <code>EXPLAIN</code> tells you exactly what MySQL is doing:
+            </p>
+            <pre><code>EXPLAIN SELECT t.*, u.email
+FROM transactions t
+JOIN users u ON u.id = t.user_id
+WHERE t.status = 'completed'
+  AND t.created_at > '2026-01-01'
+ORDER BY t.created_at DESC
+LIMIT 50;</code></pre>
+
+            <p>Key things to look for in the output:</p>
+            <ul>
+              <li>
+                <strong>type = ALL</strong> - full table scan, needs an index
+              </li>
+              <li>
+                <strong>type = ref or eq_ref</strong> - good, using an index
+              </li>
+              <li>
+                <strong>Extra = Using filesort</strong> - sorting without index,
+                consider adding one
+              </li>
+              <li>
+                <strong>rows</strong> - estimated rows examined; lower is better
+              </li>
+            </ul>
+
+            <h2 id="tools">Profiling Tools</h2>
+            <p>The tools I use daily for query performance monitoring:</p>
+            <ul>
+              <li>
+                <strong>Laravel Debugbar</strong> - shows all queries per
+                request in development
+              </li>
+              <li>
+                <strong>Laravel Telescope</strong> - production query logging
+                with slow query detection
+              </li>
+              <li>
+                <strong>MySQL slow query log</strong> - set
+                <code>long_query_time = 1</code> to catch slow queries
+              </li>
+              <li>
+                <strong>EXPLAIN ANALYZE</strong> (MySQL 8.0+) - actual vs
+                estimated row counts
+              </li>
+            </ul>
+            <pre><code>// In AppServiceProvider - log slow queries in local env
+if (app()->isLocal()) {
+    DB::listen(function ($query) {
+        if ($query->time > 500) { // ms
+            Log::warning('Slow query detected', [
+                'sql'  => $query->sql,
+                'time' => $query->time . 'ms',
+                'bindings' => $query->bindings,
+            ]);
+        }
+    });
+}</code></pre>
+
+            <div class="article-tags">
+              <span class="article-tag">MySQL</span>
+              <span class="article-tag">Laravel</span>
+              <span class="article-tag">Eloquent</span>
+              <span class="article-tag">Performance</span>
+              <span class="article-tag">Redis</span>
+              <span class="article-tag">Database</span>
+            </div>
+
+            <div class="article-share">
+              <span class="article-share-label">Share:</span>
+              <a
+                href="https://twitter.com/intent/tweet?text=MySQL+Optimization+in+Laravel&url=https://karthikmadala.github.io/Portfolio-Karthik/article-3.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-link"
+                aria-label="Share on Twitter"
+                ><i class="fab fa-twitter" aria-hidden="true"></i
+              ></a>
+              <a
+                href="https://linkedin.com/sharing/share-offsite/?url=https://karthikmadala.github.io/Portfolio-Karthik/article-3.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-link"
+                aria-label="Share on LinkedIn"
+                ><i class="fab fa-linkedin-in" aria-hidden="true"></i
+              ></a>
+            </div>
+
+            <nav class="article-nav" aria-label="Article navigation">
+              <a href="article-2.html" class="article-nav-item">
+                <p class="article-nav-label">
+                  <i class="fas fa-arrow-left" aria-hidden="true"></i> Previous
+                </p>
+                <p class="article-nav-title">
+                  MetaMask Integration Deep Dive: EVM vs Non-EVM Networks
+                </p>
+              </a>
+              <a href="blog.html" class="article-nav-item next">
+                <p class="article-nav-label">
+                  Back to Blog
+                  <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </p>
+                <p class="article-nav-title">All Articles</p>
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+      <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+  </body>
+</html>

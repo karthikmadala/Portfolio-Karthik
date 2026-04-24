@@ -1,0 +1,19 @@
+﻿{
+  "name": "Karthik Madala Portfolio",
+  "short_name": "KM Portfolio",
+  "description": "Software Engineer portfolio · Laravel, Blockchain & Web3 specialist from Chennai, India.",
+  "scope": "./",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#04040A",
+  "theme_color": "#FF8C42",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "assets/images/logo.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "assets/images/logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "screenshots": [
+    { "src": "assets/images/profile.png", "sizes": "1200x630", "type": "image/png", "form_factor": "wide" }
+  ],
+  "categories": ["portfolio", "technology", "developer"]
+}
