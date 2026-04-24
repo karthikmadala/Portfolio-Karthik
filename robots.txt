@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://karthikmadala.github.io/Portfolio-Karthik/sitemap.xml

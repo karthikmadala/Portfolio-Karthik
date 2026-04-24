@@ -1,0 +1,354 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark" prefix="og: https://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MetaMask Integration Deep Dive: EVM vs Non-EVM Networks | Karthik Madala</title>
+  <meta name="description" content="A technical deep-dive on MetaMask integration across EVM-compatible chains and non-EVM networks like Sui. Real code patterns, error handling, and network switching logic.">
+  <meta name="author" content="Karthik Madala">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://karthikmadala.github.io/Portfolio-Karthik/article-2.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://karthikmadala.github.io/Portfolio-Karthik/article-2.html">
+  <meta property="og:title" content="MetaMask Integration Deep Dive: EVM vs Non-EVM Networks">
+  <meta property="og:description" content="Detailed technical exploration of MetaMask integration across EVM chains and non-EVM wallets like Sui, with real code and error handling patterns.">
+  <meta property="og:image" content="https://karthikmadala.github.io/Portfolio-Karthik/assets/images/profile.png">
+  <meta property="og:site_name" content="Karthik Madala Portfolio">
+  <meta property="article:author" content="Karthik Madala">
+  <meta property="article:published_time" content="2026-03-22">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#FF8C42">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://karthikmadala.github.io/Portfolio-Karthik/"},
+      {"@type":"ListItem","position":2,"name":"Blog","item":"https://karthikmadala.github.io/Portfolio-Karthik/blog.html"},
+      {"@type":"ListItem","position":3,"name":"MetaMask Integration Deep Dive","item":"https://karthikmadala.github.io/Portfolio-Karthik/article-2.html"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "MetaMask Integration Deep Dive: EVM vs Non-EVM Networks",
+    "description": "A technical deep-dive on MetaMask integration across EVM-compatible chains and non-EVM networks like Sui.",
+    "author": {"@type":"Person","name":"Karthik Madala","url":"https://karthikmadala.github.io/Portfolio-Karthik"},
+    "publisher": {"@type":"Organization","name":"Karthik Madala Portfolio","url":"https://karthikmadala.github.io/Portfolio-Karthik"},
+    "datePublished": "2026-03-22",
+    "dateModified": "2026-03-22",
+    "url": "https://karthikmadala.github.io/Portfolio-Karthik/article-2.html",
+    "image": "https://karthikmadala.github.io/Portfolio-Karthik/assets/images/profile.png",
+    "keywords": ["MetaMask","EVM","Sui","Blockchain","Web3","Wallet","DApps"],
+    "inLanguage": "en-IN"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png">
+  <link rel="manifest" href="manifest.json">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap&font-display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="stylesheet" href="assets/css/index.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="assets/js/script.js" defer></script>
+</head>
+<body data-page="article">
+
+  <div class="page-loader" id="pageLoader" aria-hidden="true">
+    <div class="loader-content">
+      <div class="loader-ring"><div class="loader-ring-inner"></div><div class="loader-logo"><img src="assets/images/logo.png" alt="Logo"></div></div>
+      <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+      <p class="loader-text">Loading<span class="loader-dots">...</span></p>
+    </div>
+  </div>
+
+  <div class="scroll-progress" id="scrollProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="mouse-follower" id="mouseFollower" aria-hidden="true"><div class="mouse-follower-dot"></div></div>
+  <canvas class="bg-canvas" id="bgCanvas" aria-hidden="true"></canvas>
+
+
+  <!-- NAVIGATION -->
+  <div id="nav-placeholder"></div>
+
+  <main>
+    <div class="article-hero">
+      <div class="container">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html"><i class="fas fa-house" aria-hidden="true"></i> Home</a></li>
+            <li class="breadcrumb-item"><a href="blog.html">Blog</a></li>
+            <li class="breadcrumb-item active" aria-current="page">MetaMask Deep Dive</li>
+          </ol>
+        </nav>
+        <span class="article-category">Blockchain / Web3</span>
+        <h1 class="article-title">MetaMask Integration Deep Dive: EVM vs Non-EVM Networks</h1>
+        <div class="article-meta">
+          <span class="article-meta-item"><i class="fas fa-user" aria-hidden="true"></i> Karthik Madala</span>
+          <span class="article-meta-item"><i class="fas fa-calendar" aria-hidden="true"></i> March 22, 2026</span>
+          <span class="article-meta-item"><i class="fas fa-clock" aria-hidden="true"></i> 10 min read</span>
+          <span class="article-meta-item"><i class="fas fa-tag" aria-hidden="true"></i> MetaMask, EVM, Sui</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <div class="container">
+        <div class="article-content">
+
+          <div class="article-toc">
+            <h4>Table of Contents</h4>
+            <ol>
+              <li><a href="#evm-basics">EVM Fundamentals for DApp Developers</a></li>
+              <li><a href="#metamask-api">The MetaMask Provider API</a></li>
+              <li><a href="#multi-chain">Multi-Chain Support: Ethereum, BSC, Polygon</a></li>
+              <li><a href="#non-evm">Non-EVM Wallets: The Sui Approach</a></li>
+              <li><a href="#error-handling">Production Error Handling Patterns</a></li>
+              <li><a href="#unified-layer">Building a Unified Wallet Abstraction Layer</a></li>
+            </ol>
+          </div>
+
+          <h2 id="evm-basics">EVM Fundamentals for DApp Developers</h2>
+          <p>The Ethereum Virtual Machine (EVM) is a standardized execution environment that has been adopted by dozens of blockchains. This standardization means that a wallet built for Ethereum works on BSC, Polygon, Avalanche, and hundreds of other EVM-compatible chains - with just a network switch.</p>
+          <p>The key identifiers you'll work with constantly are:</p>
+          <ul>
+            <li><strong>Chain ID</strong> - unique identifier for each network (1 = Ethereum mainnet, 56 = BSC, 137 = Polygon)</li>
+            <li><strong>RPC URL</strong> - the JSON-RPC endpoint for your node provider</li>
+            <li><strong>Address format</strong> - always 0x-prefixed 40-character hex strings (checksummed)</li>
+          </ul>
+
+          <h2 id="metamask-api">The MetaMask Provider API</h2>
+          <p>MetaMask injects a <code>window.ethereum</code> object into every webpage. This object implements the EIP-1193 provider specification. Here's the complete connection boilerplate I use in production:</p>
+          <pre><code>class WalletConnector {
+  constructor() {
+    this.provider = null;
+    this.account = null;
+    this.chainId = null;
+  }
+
+  async init() {
+    if (!window.ethereum) {
+      throw new Error('NO_WALLET');
+    }
+
+    this.provider = window.ethereum;
+
+    // Listen for account changes
+    this.provider.on('accountsChanged', (accounts) => {
+      this.account = accounts[0] || null;
+      this.onAccountChange?.(this.account);
+    });
+
+    // Listen for chain changes
+    this.provider.on('chainChanged', (chainId) => {
+      this.chainId = chainId;
+      // Reload recommended by MetaMask docs
+      window.location.reload();
+    });
+  }
+
+  async connect() {
+    const accounts = await this.provider.request({
+      method: 'eth_requestAccounts'
+    });
+    this.account = accounts[0];
+    this.chainId = await this.provider.request({ method: 'eth_chainId' });
+    return this.account;
+  }
+
+  async signMessage(message) {
+    return await this.provider.request({
+      method: 'personal_sign',
+      params: [message, this.account],
+    });
+  }
+}</code></pre>
+
+          <h2 id="multi-chain">Multi-Chain Support: Ethereum, BSC, Polygon</h2>
+          <p>Supporting multiple EVM chains requires maintaining a config map and gracefully prompting users to switch:</p>
+          <pre><code>const CHAIN_CONFIG = {
+  '0x1': {
+    name: 'Ethereum Mainnet',
+    rpcUrls: ['https://mainnet.infura.io/v3/YOUR_KEY'],
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    blockExplorerUrls: ['https://etherscan.io'],
+  },
+  '0x38': {
+    name: 'BNB Smart Chain',
+    rpcUrls: ['https://bsc-dataseed.binance.org/'],
+    nativeCurrency: { name: 'BNB', symbol: 'BNB', decimals: 18 },
+    blockExplorerUrls: ['https://bscscan.com'],
+  },
+  '0x89': {
+    name: 'Polygon Mainnet',
+    rpcUrls: ['https://polygon-rpc.com'],
+    nativeCurrency: { name: 'MATIC', symbol: 'MATIC', decimals: 18 },
+    blockExplorerUrls: ['https://polygonscan.com'],
+  },
+};
+
+async function ensureNetwork(targetChainId) {
+  const currentChainId = await window.ethereum.request({ method: 'eth_chainId' });
+  if (currentChainId === targetChainId) return;
+
+  try {
+    await window.ethereum.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: targetChainId }],
+    });
+  } catch (error) {
+    if (error.code === 4902) {
+      // Network not in MetaMask - add it
+      await window.ethereum.request({
+        method: 'wallet_addEthereumChain',
+        params: [{ chainId: targetChainId, ...CHAIN_CONFIG[targetChainId] }],
+      });
+    } else {
+      throw error;
+    }
+  }
+}</code></pre>
+
+          <h2 id="non-evm">Non-EVM Wallets: The Sui Approach</h2>
+          <p>Sui uses a completely different wallet model - the Move VM, object-centric storage, and a different address format. The Sui Wallet browser extension exposes <code>window.suiWallet</code> (or the newer <code>@mysten/wallet-standard</code>).</p>
+          <pre><code>// Sui Wallet connection
+async function connectSuiWallet() {
+  // Check for Sui Wallet extension
+  if (!window.suiWallet) {
+    // Fallback to wallet-standard
+    const { getWallets } = await import('@mysten/wallet-standard');
+    const wallets = getWallets().get();
+    const suiWallet = wallets.find(w => w.name.includes('Sui'));
+    if (!suiWallet) throw new Error('Sui Wallet not found');
+  }
+
+  const response = await window.suiWallet.requestPermissions({
+    permissions: ['viewAccount', 'suggestTransactions'],
+  });
+
+  if (response.result) {
+    const accounts = await window.suiWallet.getAccounts();
+    return accounts[0].address; // 0x-prefixed 32-byte hex
+  }
+}
+
+// Signing a Sui transaction
+async function executeSuiTransaction(txBytes) {
+  const result = await window.suiWallet.signAndExecuteTransactionBlock({
+    transactionBlock: txBytes,
+    options: {
+      showEffects: true,
+      showObjectChanges: true,
+    },
+  });
+  return result.digest; // transaction hash
+}</code></pre>
+
+          <h3>Key Differences: EVM vs Sui</h3>
+          <p>The most important architectural differences to account for:</p>
+          <ul>
+            <li><strong>Address format:</strong> EVM uses 20-byte hex; Sui uses 32-byte hex</li>
+            <li><strong>Transaction model:</strong> EVM is account-based; Sui is object-centric (UTXO-like)</li>
+            <li><strong>Gas:</strong> EVM uses ETH/native token; Sui uses SUI for gas</li>
+            <li><strong>Finality:</strong> Sui achieves finality in ~500ms vs Ethereum's ~12s</li>
+          </ul>
+
+          <h2 id="error-handling">Production Error Handling Patterns</h2>
+          <p>Wallet interactions are full of edge cases. Here's the error taxonomy I've learned to handle:</p>
+          <pre><code>const WALLET_ERRORS = {
+  4001: 'User rejected the request',
+  4100: 'Unauthorized - connect wallet first',
+  4200: 'Unsupported method',
+  4900: 'Disconnected from chain',
+  4901: 'Chain not connected',
+  4902: 'Chain not added to wallet',
+  '-32002': 'Request already pending - check MetaMask popup',
+  '-32603': 'Internal JSON-RPC error',
+};
+
+function handleWalletError(error) {
+  const message = WALLET_ERRORS[error.code]
+    || WALLET_ERRORS[String(error.code)]
+    || error.message
+    || 'Unknown wallet error';
+
+  // User rejections are not bugs - don't log them as errors
+  if (error.code === 4001) {
+    showInfo(message);
+    return;
+  }
+  showError(message);
+  console.error('[Wallet Error]', error);
+}</code></pre>
+
+          <h2 id="unified-layer">Building a Unified Wallet Abstraction Layer</h2>
+          <p>When your DApp needs to support both EVM and Sui, a unified abstraction layer is essential. The interface should expose the same methods regardless of the underlying wallet:</p>
+          <pre><code>class WalletManager {
+  constructor() {
+    this.adapters = {
+      evm: new EVMWalletAdapter(),
+      sui: new SuiWalletAdapter(),
+    };
+    this.active = null;
+  }
+
+  async connect(type = 'evm') {
+    const adapter = this.adapters[type];
+    const address = await adapter.connect();
+    this.active = { type, adapter, address };
+    return address;
+  }
+
+  async getBalance() {
+    return this.active.adapter.getBalance(this.active.address);
+  }
+
+  async sendTransaction(params) {
+    return this.active.adapter.sendTransaction(params);
+  }
+}</code></pre>
+          <p>This pattern keeps your UI components ignorant of wallet specifics - they just call <code>walletManager.sendTransaction()</code> and the adapter handles the rest.</p>
+
+          <div class="article-tags">
+            <span class="article-tag">MetaMask</span>
+            <span class="article-tag">EVM</span>
+            <span class="article-tag">Sui Wallet</span>
+            <span class="article-tag">Web3.js</span>
+            <span class="article-tag">Blockchain</span>
+            <span class="article-tag">DApps</span>
+          </div>
+
+          <div class="article-share">
+            <span class="article-share-label">Share:</span>
+            <a href="https://twitter.com/intent/tweet?text=MetaMask+Integration+Deep+Dive&url=https://karthikmadala.github.io/Portfolio-Karthik/article-2.html" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Share on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+            <a href="https://linkedin.com/sharing/share-offsite/?url=https://karthikmadala.github.io/Portfolio-Karthik/article-2.html" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+          </div>
+
+          <nav class="article-nav" aria-label="Article navigation">
+            <a href="article-1.html" class="article-nav-item">
+              <p class="article-nav-label"><i class="fas fa-arrow-left" aria-hidden="true"></i> Previous</p>
+              <p class="article-nav-title">Building Your First ICO Platform with Laravel &amp; Web3.js</p>
+            </a>
+            <a href="article-3.html" class="article-nav-item next">
+              <p class="article-nav-label">Next Article <i class="fas fa-arrow-right" aria-hidden="true"></i></p>
+              <p class="article-nav-title">Optimizing MySQL Queries in Laravel: Lessons from Production</p>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+</body>
+</html>
